@@ -1,0 +1,39 @@
+{
+  "schema": "arxiv-template.submission-agents.v1",
+  "scope": "Reusable arXiv manuscript submission package",
+  "agents": [
+    {
+      "id": "manuscript_editor",
+      "role": "Checks manuscript structure, claims, citations, declarations, and limitations.",
+      "reviewed_artifacts": [
+        "paper/paper.tex",
+        "paper/references.csl.json"
+      ]
+    },
+    {
+      "id": "arxiv_toolchain_reviewer",
+      "role": "Checks PDF build, source package cleaning, arXiv-safe filenames, and privacy audit outputs.",
+      "reviewed_artifacts": [
+        "scripts/build_manuscript_pdf.py",
+        "scripts/build_arxiv_source_package.py",
+        "scripts/clean_arxiv_source_package.py",
+        "scripts/audit_arxiv_source_privacy.py"
+      ]
+    },
+    {
+      "id": "publisher_submission_manager",
+      "role": "Checks upload-ready tarball, manifest, checksums, and external arXiv closeout record.",
+      "reviewed_artifacts": [
+        "dist/arxiv/",
+        "docs/arxiv-submission-state.md",
+        "docs/arxiv-post-submission-record-template.md"
+      ]
+    }
+  ],
+  "external_steps": [
+    "upload tarball to arXiv as the registered submitting author",
+    "inspect arXiv-rendered PDF",
+    "record assigned arXiv identifier and version"
+  ]
+}
+

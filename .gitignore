@@ -1,0 +1,16 @@
+.tmp/
+dist/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.synctex.gz
+*.toc
+paper/arxiv-source-privacy-audit.json
+paper/arxiv-source-privacy-audit.md

@@ -1,0 +1,35 @@
+name: arXiv Preflight
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  arxiv-preflight:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      attestations: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Tectonic
+        uses: wtfjoke/setup-tectonic@v3
+      - name: Run arXiv preflight
+        run: make arxiv-upload-ready
+      - name: Upload arXiv bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: arxiv-upload-ready
+          path: dist/arxiv/
+          retention-days: 90
+      - name: Attest checksums
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/arxiv/SHA256SUMS
+

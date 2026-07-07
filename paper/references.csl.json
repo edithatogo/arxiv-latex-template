@@ -1,0 +1,42 @@
+[
+  {
+    "id": "lamport-1994",
+    "type": "book",
+    "title": "LaTeX: A Document Preparation System",
+    "publisher": "Addison-Wesley",
+    "issued": {
+      "date-parts": [
+        [
+          1994
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Leslie",
+        "family": "Lamport"
+      }
+    ]
+  },
+  {
+    "id": "w3c-rdf11-concepts",
+    "type": "webpage",
+    "title": "RDF 1.1 Concepts and Abstract Syntax",
+    "URL": "https://www.w3.org/TR/rdf11-concepts/",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          2,
+          25
+        ]
+      ]
+    },
+    "author": [
+      {
+        "literal": "W3C RDF Working Group"
+      }
+    ]
+  }
+]
+

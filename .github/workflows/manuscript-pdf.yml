@@ -6,21 +6,29 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: typesetting-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   manuscript-pdf:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.11"
+          python-version: "3.14"
       - name: Install Tectonic
-        uses: wtfjoke/setup-tectonic@v3
+        uses: wtfjoke/setup-tectonic@eb29fd68b7d3f76011906b6e45ea4320c8de5d2f # v4.0.5
+        with:
+          tectonic-version: "0.17.0"
       - name: Build PDF
         run: make manuscript-pdf
       - name: Upload PDF
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: manuscript-pdf
           path: .tmp/manuscript-build/paper.pdf
-
